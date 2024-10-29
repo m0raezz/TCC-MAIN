@@ -141,7 +141,7 @@
     </section>
 
     <!-- Cards de Avaliações -->
-    <section class="row">
+    <section class="row over">
             <?php
             require "conexao.php";
 

@@ -160,7 +160,7 @@
     </section>
 
     <!-- Cards de Avaliações -->
-    <section class="row">
+    <section class="row over">
         <?php
             require "conexao.php";
             $sql = "SELECT * FROM tbcomentarios WHERE condicao ='I' AND curso = 'INFO'";

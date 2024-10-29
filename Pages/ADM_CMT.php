@@ -141,82 +141,85 @@
     </section>
 
     <!-- Cards de Avaliações -->
-    <section class="row">
-            <?php
-            require "conexao.php";
+    <section class="row over">
+    <?php
+    require "conexao.php";
 
-            $cursoFiltro = isset($_GET['curso']) ? $_GET['curso'] : 'TODOS';
-            $nomeFiltro = isset($_GET['nomeFiltro']) ? $_GET['nomeFiltro'] : '';
+    $cursoFiltro = isset($_GET['curso']) ? $_GET['curso'] : 'TODOS';
+    $nomeFiltro = isset($_GET['nomeFiltro']) ? $_GET['nomeFiltro'] : '';
 
-            // Definir a consulta com base nos filtros aplicados
-            if ($cursoFiltro === 'TODOS') {
-                // Apenas o nome será filtrado
-                $sql = "SELECT * FROM tbcomentarios WHERE nomeVeterano LIKE ? AND (condicao = 'E' OR condicao = 'X') ORDER BY nomeVeterano ASC";
-                $stmt = mysqli_prepare($conexao, $sql);
-                $nomeFiltro = "%$nomeFiltro%";
-                mysqli_stmt_bind_param($stmt, "s", $nomeFiltro);
-            } else {
-                // Filtrar tanto pelo curso quanto pelo nome
-                $sql = "SELECT * FROM tbcomentarios WHERE curso = ? AND nomeVeterano LIKE ? AND (condicao = 'E' OR condicao = 'X') ORDER BY nomeVeterano ASC";
-                $stmt = mysqli_prepare($conexao, $sql);
-                $nomeFiltro = "%$nomeFiltro%";
-                mysqli_stmt_bind_param($stmt, "ss", $cursoFiltro, $nomeFiltro);
-            }
+    // Definir a consulta com base nos filtros aplicados
+    if ($cursoFiltro === 'TODOS') {
+        // Apenas o nome será filtrado
+        $sql = "SELECT * FROM tbcomentarios WHERE nomeVeterano LIKE ? AND (condicao = 'E' OR condicao = 'X') ORDER BY nomeVeterano ASC";
+        $stmt = mysqli_prepare($conexao, $sql);
+        $nomeFiltro = "%$nomeFiltro%";
+        mysqli_stmt_bind_param($stmt, "s", $nomeFiltro);
+    } else {
+        // Filtrar tanto pelo curso quanto pelo nome
+        $sql = "SELECT * FROM tbcomentarios WHERE curso = ? AND nomeVeterano LIKE ? AND (condicao = 'E' OR condicao = 'X') ORDER BY nomeVeterano ASC";
+        $stmt = mysqli_prepare($conexao, $sql);
+        $nomeFiltro = "%$nomeFiltro%";
+        mysqli_stmt_bind_param($stmt, "ss", $cursoFiltro, $nomeFiltro);
+    }
 
-            mysqli_stmt_execute($stmt);
-            $resultado = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
 
-            while ($linha = mysqli_fetch_array($resultado)) {
-                $nomeVeterano = $linha["nomeVeterano"];
-                $rmVeterano = $linha["rmVeterano"];
-                $curso = $linha["curso"];
-                $texto = $linha["texto"];
-                $condicao = $linha["condicao"];
+    while ($linha = mysqli_fetch_array($resultado)) {
+        $nomeVeterano = $linha["nomeVeterano"];
+        $rmVeterano = $linha["rmVeterano"];
+        $curso = $linha["curso"];
+        $texto = $linha["texto"];
+        $condicao = $linha["condicao"];
 
-                // Exibe o card com estrutura fixa e personalização conforme necessidade
-                echo "<div class='col-md-4 mb-4'>";
-                    echo "<div class='card text-center p-3'>";
-                        echo "<div class='stars'>Nome: $nomeVeterano - $curso</div>";
-                        echo "<div class='stars'>RM: $rmVeterano Condição: $condicao </div><hr>";
-                        echo "<div class='texto'>$texto</div>";
-                        echo "<div class='d-flex justify-content-around mt-3'>";
+        // Exibe o card com estrutura fixa e personalização conforme necessidade
+        echo "<div class='col-md-4 mb-4'>";
+            echo "<div class='card text-center p-3'>";
+                echo "<div class='stars'>Nome: $nomeVeterano - $curso</div>";
+                echo "<div class='stars'>RM: $rmVeterano Condição: $condicao </div><hr>";
+                echo "<div class='texto'>$texto</div>";
+                echo "<div class='d-flex justify-content-around mt-3'>";
 
-                        // Formulário para devolver
-                        echo "<form action='' method='post' onsubmit='submitForm(event, this)'>";
-                            echo "<input type='hidden' name='rmVeterano' value='$rmVeterano'>";
-                            echo "<input type='submit' name='devolver' value='Devolver' class='btn btn-primary'>";
-                        echo "</form>";
+                // Formulário para devolver
+                echo "<form action='' method='post' onsubmit='submitForm(event, this)'>";
+                    echo "<input type='hidden' name='rmVeterano' value='$rmVeterano'>";
+                    echo "<input type='submit' name='devolver' value='Devolver' class='btn btn-primary'>";
+                echo "</form>";
 
-                        echo "<form action='' method='post' onsubmit='submitForm(event, this)'>";
-                            echo "<input type='hidden' name='rmVeterano' value='$rmVeterano'>";
-                            echo "<input type='submit' name='devolver' value='Excluir' class='btn btn-danger'>";
-                        echo "</form>";
+                // Formulário para excluir com confirmação
+                echo "<form action='' method='post' onsubmit=\"return confirm('Tem certeza que deseja excluir este registro?')\">";
+                    echo "<input type='hidden' name='rmVeterano' value='$rmVeterano'>";
+                    echo "<input type='submit' name='excluir' value='Excluir' class='btn btn-danger'>";
+                echo "</form>";
 
-                    echo "</div>";
-                echo "</div>";
             echo "</div>";
-            }
+        echo "</div>";
+    echo "</div>";
+    }
 
-            // Se o botão de devolução foi clicado
-            if (isset($_POST["devolver"])) {
-                $rmVeterano = $_POST["rmVeterano"];
-                $sql = "UPDATE tbcomentarios SET condicao='I' WHERE rmVeterano=?";
-                $stmt = mysqli_prepare($conexao, $sql);
-                mysqli_stmt_bind_param($stmt, "s", $rmVeterano);
-                mysqli_stmt_execute($stmt);
-                echo '<script>window.location.href = window.location.href;</script>';
-            }
+    // Se o botão de devolução foi clicado
+    if (isset($_POST["devolver"])) {
+        $rmVeterano = $_POST["rmVeterano"];
+        $sql = "UPDATE tbcomentarios SET condicao='I' WHERE rmVeterano=?";
+        $stmt = mysqli_prepare($conexao, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $rmVeterano);
+        mysqli_stmt_execute($stmt);
+        echo '<script>window.location.href = window.location.href;</script>';
+    }
 
-            if (isset($_POST["excluir"])) {
-                $rmVeterano = $_POST["rmVeterano"];
-                $sql = "DELETE tbcomentarios WHERE rmVeterano=?";
-                $stmt = mysqli_prepare($conexao, $sql);
-                mysqli_stmt_bind_param($stmt, "s", $rmVeterano);
-                mysqli_stmt_execute($stmt);
-                echo '<script>window.location.href = window.location.href;</script>';
-            }
-            ?>
-        </section>
+    // Se o botão de excluir foi clicado
+    if (isset($_POST["excluir"])) {
+        $rmVeterano = $_POST["rmVeterano"];
+        $sql = "DELETE FROM tbcomentarios WHERE rmVeterano=?";
+        $stmt = mysqli_prepare($conexao, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $rmVeterano);
+        mysqli_stmt_execute($stmt);
+        echo '<script>window.location.href = window.location.href;</script>';
+    }
+    ?>
+</section>
+
 
 </div>
 </body>

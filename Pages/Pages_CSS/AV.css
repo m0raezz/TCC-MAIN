@@ -177,7 +177,10 @@ body {
     width: 100%; /* Largura total */
 }
  
-
+.over{
+    overflow-y: auto;
+    max-height: 700px;
+}
 
 
 
