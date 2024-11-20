@@ -262,7 +262,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </table>
 </div>
 
-
+            <!-- Botão para Excluir Todos os Registros -->
+             <br>
+            <button type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Excluir Todos os Registros
+            </button>
 
         <!-- Formulário para adicionar novo RM -->
         <form method="POST" class="mt-4">
@@ -288,6 +292,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
     <!-- End Table for tbRM -->
+
+
+    <!-- Modal para selecionar o curso -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Excluir Todos os Registros</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Selecione o curso para excluir todos os registros:</p>
+                <form action="" method="get" id="deleteForm">
+                    <div class="mb-3">
+                        <select name="deleteAll" class="form-select" required>
+                            <option value="INFO">Informática</option>
+                            <option value="ADM">Administração</option>
+                            <option value="RH">Recursos Humanos</option>
+                            <option value="SJ">Serviços Jurídicos</option>
+                            <option value="MKT">Marketing</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Excluir Todos</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Função para exibir confirmação antes de excluir
+    function confirmDelete() {
+        const confirmed = confirm("Tem certeza de que deseja excluir todos os registros deste curso?");
+        if (confirmed) {
+            // Se confirmado, envia o formulário
+            document.getElementById('deleteForm').submit();
+        }
+    }
+</script>
+
+
+<!-- Modal de confirmação -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar Exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Você está prestes a excluir todos os registros deste curso. Tem certeza de que deseja continuar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form id="confirmDeleteForm" method="get" action="">
+                    <input type="hidden" name="deleteAll" id="deleteCourse">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Função para abrir o modal de confirmação e passar o curso selecionado
+    document.querySelector("button[type='button']").addEventListener('click', function () {
+        const cursoSelecionado = document.querySelector("select[name='deleteAll']").value;
+        document.getElementById('deleteCourse').value = cursoSelecionado;
+    });
+</script>
+
 
     <!-- Footer -->
     <footer class="bg-dark text-light text-center  fixed-bottom">
