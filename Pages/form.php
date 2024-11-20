@@ -41,7 +41,7 @@
             <a class="navbar-brand" href="#">
                 <img src="../Images/logo3.png" width="45" height="48" alt="Logo">
             </a>
-            <a class="navbar-brand text-light" href="#">Etec Bebedouro</a>
+            <a class="navbar-brand text-light" href="../index.php">Etec Bebedouro</a>
             
             <!-- Navbar for mobile view -->
             <button class="text-light navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,13 +52,13 @@
             <div class="text-light collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="text-light nav-link active me-2" aria-current="page" href="../index.php #im">Inicio</a>
+                        <a class="text-light nav-link active me-2" aria-current="page" href="../index.php #im">INICIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="../index.php #eq">Equipe</a>
+                        <a class="text-light nav-link me-2" href="../index.php #eq">EQUIPE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="../index.php #sb">Sobre</a>
+                        <a class="text-light nav-link me-2" href="../index.php #sb">SOBRE</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="text-light nav-link dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -160,8 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <section name="forms" class="mt-5 pt-5 flex-grow-1">
         <div class="container">
-            <h2 class="text-center mb-4">Formulário de Avaliação</h2>
+            <h2 class="text-center mb-4">Formulário de Avaliação </h2> 
             <h6 class="text-center mb-4"><bold>ATENÇÃO</bold> a avaliação é única, então confirme que está colocando o RM certo e seu nome completo. </h6>
+            <p class=' text-center'><a style='text-decoration: none;' class='text-danger' href="../index.php">Voltar</a></p>
             <form action="" method="POST">
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome</label>

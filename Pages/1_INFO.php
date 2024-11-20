@@ -123,7 +123,7 @@
                         
                         echo "<div class='card mb-2'>";
                         echo  "<div class='card-body'>";
-                        echo  "<h5 class='card-title'>$nomeVeterano - $ano </h5>";
+                        echo  "<h5 class='card-title' style='font-weight: bold;' font->$nomeVeterano - $ano </h5>";
                         echo  "<p class='card-text'>$texto</p>";
                         echo  "</div>";
                         echo  "</div>";
