@@ -201,62 +201,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <!-- Tabela de registros -->
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>RM</th>
-                    <th>Curso</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Verifica se foi feito um filtro de curso e/ou nome
-                $cursoFiltro = isset($_GET['curso']) ? $_GET['curso'] : 'TODOS';
-                $nomeFiltro = isset($_GET['nomeFiltro']) ? $_GET['nomeFiltro'] : '';
+        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>RM</th>
+            <th>Curso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+</table>
+<div style="max-height: 500px; overflow-y: auto;">
+    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+        <tbody>
+            <?php
+            // Verifica se foi feito um filtro de curso e/ou nome
+            $cursoFiltro = isset($_GET['curso']) ? $_GET['curso'] : 'TODOS';
+            $nomeFiltro = isset($_GET['nomeFiltro']) ? $_GET['nomeFiltro'] : '';
 
-                // Filtro por nome, independente do curso
-                if ($nomeFiltro && $cursoFiltro === 'TODOS') {
-                    $sqlSelect = "SELECT * FROM tbRM WHERE nome LIKE ? ORDER BY nome ASC";
-                    $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
-                    $nomeFiltro = "%$nomeFiltro%";
-                    mysqli_stmt_bind_param($stmtSelect, "s", $nomeFiltro);
-                } elseif ($cursoFiltro !== 'TODOS' && $nomeFiltro) {
-                    // Filtro por curso e nome
-                    $sqlSelect = "SELECT * FROM tbRM WHERE curso = ? AND nome LIKE ? ORDER BY nome ASC";
-                    $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
-                    $nomeFiltro = "%$nomeFiltro%";
-                    mysqli_stmt_bind_param($stmtSelect, "ss", $cursoFiltro, $nomeFiltro);
-                } elseif ($cursoFiltro !== 'TODOS') {
-                    // Filtro somente por curso
-                    $sqlSelect = "SELECT * FROM tbRM WHERE curso = ? ORDER BY nome ASC";
-                    $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
-                    mysqli_stmt_bind_param($stmtSelect, "s", $cursoFiltro);
-                } else {
-                    // Sem filtros, exibe todos os registros
-                    $sqlSelect = "SELECT * FROM tbRM ORDER BY nome ASC";
-                    $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
-                }
+            // Filtro por nome, independente do curso
+            if ($nomeFiltro && $cursoFiltro === 'TODOS') {
+                $sqlSelect = "SELECT * FROM tbRM WHERE nome LIKE ? ORDER BY nome ASC";
+                $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
+                $nomeFiltro = "%$nomeFiltro%";
+                mysqli_stmt_bind_param($stmtSelect, "s", $nomeFiltro);
+            } elseif ($cursoFiltro !== 'TODOS' && $nomeFiltro) {
+                // Filtro por curso e nome
+                $sqlSelect = "SELECT * FROM tbRM WHERE curso = ? AND nome LIKE ? ORDER BY nome ASC";
+                $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
+                $nomeFiltro = "%$nomeFiltro%";
+                mysqli_stmt_bind_param($stmtSelect, "ss", $cursoFiltro, $nomeFiltro);
+            } elseif ($cursoFiltro !== 'TODOS') {
+                // Filtro somente por curso
+                $sqlSelect = "SELECT * FROM tbRM WHERE curso = ? ORDER BY nome ASC";
+                $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
+                mysqli_stmt_bind_param($stmtSelect, "s", $cursoFiltro);
+            } else {
+                // Sem filtros, exibe todos os registros
+                $sqlSelect = "SELECT * FROM tbRM ORDER BY nome ASC";
+                $stmtSelect = mysqli_prepare($conexao, $sqlSelect);
+            }
 
-                mysqli_stmt_execute($stmtSelect);
-                $resultSelect = mysqli_stmt_get_result($stmtSelect);
+            mysqli_stmt_execute($stmtSelect);
+            $resultSelect = mysqli_stmt_get_result($stmtSelect);
 
-                while ($row = mysqli_fetch_assoc($resultSelect)) {
-                    echo "<tr>";
-                    echo "<td>{$row['nome']}</td>";
-                    echo "<td>{$row['rm']}</td>";
-                    echo "<td>{$row['curso']}</td>";
-                    echo "<td>";
-                    echo "<a href='?delete={$row['rm']}' class='btn btn-danger btn-sm' onclick=\"return confirm('Tem certeza que deseja excluir este registro?')\">Excluir</a>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
+            while ($row = mysqli_fetch_assoc($resultSelect)) {
+                echo "<tr>";
+                echo "<td>{$row['nome']}</td>";
+                echo "<td>{$row['rm']}</td>";
+                echo "<td>{$row['curso']}</td>";
+                echo "<td>";
+                echo "<a href='?delete={$row['rm']}' class='btn btn-danger btn-sm' onclick=\"return confirm('Tem certeza que deseja excluir este registro?')\">Excluir</a>";
+                echo "</td>";
+                echo "</tr>";
+            }
 
-                mysqli_stmt_close($stmtSelect);
-                ?>
-            </tbody>
-        </table>
+            mysqli_stmt_close($stmtSelect);
+            ?>
+        </tbody>
+    </table>
+</div>
+
+
 
         <!-- Formulário para adicionar novo RM -->
         <form method="POST" class="mt-4">
