@@ -90,11 +90,11 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| AV. APROVADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| APROVADAS</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| AV. REENCAMINHADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| ENCAMINHADAS & REPROVADAS </a>
                     </li>
  
                     <li class="nav-item">

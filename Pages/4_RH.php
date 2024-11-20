@@ -102,7 +102,7 @@
 
 
             <div class="col-md-6 d-flex flex-column justify-content-center align-items-center texto-di"  name="Direita">
-                <h2 class="text-center" style="font-weight: bold;">Avaliações</h2>
+                <h2 class="text-center" style="font-weight: bold;">AVALIAÇÕES</h2>
 
                 <!-- Nova div dentro da div Direita -->
                 <div class="d-flex flex-column  " style="background-color: #d3d3d3; width: 100%; height: 100%; max-height: 720px;">

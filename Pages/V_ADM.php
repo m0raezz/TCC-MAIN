@@ -66,13 +66,13 @@
             <div class="text-light collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="text-light nav-link active me-2" aria-current="page" href="#im">INICIO</a>
+                        <a class="text-light nav-link active me-2" aria-current="page" href="V_ADM.php #im">INICIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="#eq">EQUIPE</a>
+                        <a class="text-light nav-link me-2" href="V_ADM.php #eq">EQUIPE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="#sb">SOBRE</a>
+                        <a class="text-light nav-link me-2" href="V_ADM.php #sb">SOBRE</a>
                     </li>
 
 
@@ -90,11 +90,11 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| AV. APROVADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| APROVADAS</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| AV. REENCAMINHADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| ENCAMINHADAS & REPROVADAS </a>
                     </li>
  
                     <li class="nav-item">

@@ -136,7 +136,7 @@
                 <button class="btn btn-primary" type="submit">Filtrar</button>
             </div>
         </form>
-        <span>Avaliações REENCAMINHADAS ou EXCLUIDAS</span>
+        <span>Avaliações ENCAMINHADAS (E) ou EXCLUIDAS (X)</span>
 
     </section>
 
@@ -177,14 +177,14 @@
         echo "<div class='col-md-4 mb-4'>";
             echo "<div class='card text-center p-3'>";
                 echo "<div class='stars'>Nome: $nomeVeterano - $curso</div>";
-                echo "<div class='stars'>RM: $rmVeterano Condição: $condicao </div><hr>";
+                echo "<div class='stars'>RM: $rmVeterano  ($condicao) </div><hr>";
                 echo "<div class='texto'>$texto</div>";
                 echo "<div class='d-flex justify-content-around mt-3'>";
 
                 // Formulário para devolver
                 echo "<form action='' method='post' onsubmit='submitForm(event, this)'>";
                     echo "<input type='hidden' name='rmVeterano' value='$rmVeterano'>";
-                    echo "<input type='submit' name='devolver' value='Devolver' class='btn btn-primary'>";
+                    echo "<input type='submit' name='devolver' value='Desfazer' class='btn btn-primary'>";
                 echo "</form>";
 
                 // Formulário para excluir com confirmação

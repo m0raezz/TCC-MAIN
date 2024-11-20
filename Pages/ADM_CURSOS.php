@@ -57,7 +57,7 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
-    <!-- Start NavBar -->
+    <!-- Start NavBar-->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <!-- Navbar icon left -->
@@ -67,10 +67,9 @@
             <a class="navbar-brand text-light" href="V_ADM.php">Etec Bebedouro</a>
             
             <!-- Navbar for mobile view -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span> <!-- Usar o ícone padrão do Bootstrap -->
+            <button class="text-light navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="text-light navbar-toggler-icon"></span>
             </button>
-
             
             <!-- Navbar dropdown -->
             <div class="text-light collapse navbar-collapse" id="navbarNavDropdown">
@@ -100,11 +99,11 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| AV. APROVADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| APROVADAS</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| AV. REENCAMINHADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| ENCAMINHADAS & REPROVADAS </a>
                     </li>
  
                     <li class="nav-item">

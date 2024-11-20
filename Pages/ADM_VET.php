@@ -38,7 +38,7 @@ if (isset($_GET['deleteAll'])) {
 
 // Inserir um novo registro
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = $_POST['nome'];
+    $nome = strtoupper($_POST['nome']);
     $rm = $_POST['rm'];
     $curso = $_POST['curso'];
 
@@ -155,11 +155,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| AV. APROVADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMTAP.php">| APROVADAS</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| AV. REENCAMINHADAS</a>
+                        <a class="text-light nav-link me-2" href="ADM_CMT.php">| ENCAMINHADAS & REPROVADAS </a>
                     </li>
  
                     <li class="nav-item">
